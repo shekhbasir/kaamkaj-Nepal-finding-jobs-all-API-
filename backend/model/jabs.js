@@ -14,7 +14,10 @@ const hamarjobs=new mongoose.Schema({
     type:String
   }],
   salary:{type:Number},
-  location:{type:String,required:true},
+  location:{type:String},
+  experience:{
+    type:Number,
+  },
   jobsTypes:{
     type:String,
   },
@@ -28,4 +31,6 @@ const hamarjobs=new mongoose.Schema({
 const JobsDatabase=mongoose.model("JobsDatabase",hamarjobs);
 module.exports=JobsDatabase;
 
-//simply Ham apan kaam kar saktani bahut hii eassy way mee
+
+//now i am going to working with the 
+//here i am going to making the my jobs 

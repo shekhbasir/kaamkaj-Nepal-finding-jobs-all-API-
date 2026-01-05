@@ -2,9 +2,10 @@
 const express=require('express');
 const sabcomponey=express.Router();
 const {componeyRegister,getallcomponey,getsinglecompony,updatecomponey}=require("../controllers/allcomponey");
-sabcomponey.post("/registercomp",componeyRegister);
-sabcomponey.get("/getallcomp",getallcomponey);
-sabcomponey.get('/getsinglecomp',getsinglecompony);
-sabcomponey.put("/updatecomp",updatecomponey);
+const isauth = require('../middleware/isauth');
+sabcomponey.post("/registercomp",isauth,componeyRegister);
+sabcomponey.get("/getallcomp",isauth,getallcomponey);
+sabcomponey.get('/getsinglecomp',isauth,getsinglecompony);
+sabcomponey.put("/updatecomp",isauth,updatecomponey);
 
 module.exports=sabcomponey;

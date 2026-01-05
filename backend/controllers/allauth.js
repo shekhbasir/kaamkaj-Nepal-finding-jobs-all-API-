@@ -1,4 +1,3 @@
-//here i am going too wrting the code for the simple taskand working 
 
 const mongoose=require('mongoose');
 const jwt=require('jsonwebtoken');

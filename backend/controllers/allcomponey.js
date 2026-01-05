@@ -1,6 +1,5 @@
 const ComponeyDatabase = require("../model/componey");
 
-// 1️⃣ Register Componey
 const componeyRegister = async (req, res) => {
   try {
     const { componeyName } = req.body;
@@ -46,7 +45,6 @@ const componeyRegister = async (req, res) => {
   }
 };
 
-// 2️⃣ Get all componey of logged-in user
 const getallcomponey = async (req, res) => {
   try {
     const userId = req.userId;
@@ -75,7 +73,6 @@ const getallcomponey = async (req, res) => {
   }
 };
 
-// 3️⃣ Get single componey (only owner)
 const getsinglecompony = async (req, res) => {
   try {
     const singleid = req.params.id;
@@ -107,7 +104,6 @@ const getsinglecompony = async (req, res) => {
   }
 };
 
-// 4️⃣ Update componey (only owner)
 const updatecomponey = async (req, res) => {
   try {
     const { name, description, location, website } = req.body;
