@@ -61,6 +61,8 @@ const postjobs = async (req, res) => {
 };
 
 
+
+
 const getalljobs = async (req, res) => {
   try {
     const keyword = req.query.keyword || "";
@@ -74,7 +76,7 @@ const getalljobs = async (req, res) => {
       ]
     };
 
-    const milaljobs = await JobsDatabase.find(query).sort({ createdAt: -1 });
+    const milaljobs = await JobsDatabase.find(query).sort({createdAt:-1});
 
     if (milaljobs.length === 0) {
       return res.status(404).json({
@@ -98,7 +100,77 @@ const getalljobs = async (req, res) => {
   }
 };
 
+
+
+const getjobByid = async (req, res) => {
+  try {
+    const hamarid = req.params.id;
+
+    const hamarjobs = await JobsDatabase.findById(hamarid);
+
+    if (!hamarjobs) {
+      return res.status(400).json({
+        message: "No Jobs Found ..!",
+        success: false
+      });
+    }
+
+    return res.status(200).json({
+      message: "Below Is Your Data ..",
+      hamarjobs,
+      success: true
+    });
+
+  } catch (error) {
+    console.log("this is the error from the getjobbyid", error);
+    return res.status(500).json({
+      message: "server error",
+      success: false
+    });
+  }
+};
+
+
+const adminjobs = async (req, res) => {
+  try {
+    const hamarid = req.userId;
+
+    const sabdata = await JobsDatabase.find({ createdby: hamarid });
+
+    if (sabdata.length === 0) {
+      return res.status(400).json({
+        message: "NO jobs Is There",
+        success: false
+      });
+    }
+
+    return res.status(200).json({
+      message: "Your All Jobs Is Therre",
+      success: true,
+      count: sabdata.length,
+      sabdata
+    });
+
+  } catch (error) {
+    console.log("this is the error from the admin jobs", error);
+    return res.status(500).json({
+      message: "server error",
+      success: false
+    });
+  }
+};
+
+
 module.exports = {
   postjobs,
-  getalljobs
+  getalljobs,
+  getjobByid,
+  adminjobs 
 };
+
+
+//ab ham simle apppan kaam kar deham 
+
+/// here i am laso and i am going to wrking the code 
+//the same and the name will going to working 
+//this is  the code 

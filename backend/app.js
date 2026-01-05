@@ -7,6 +7,7 @@ const app=express();
 const allauthroutes=require("./routes/allauth");
 const Dbconnection = require("./config/Db");
 const sabcomponey=require("./routes/allcomponey");
+const jobsroutes=require("./routes/alljobs");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -17,7 +18,11 @@ app.use(cors({
 }))
 
 app.use("/auth",allauthroutes)
-app.use("/comp",sabcomponey);
+app.use("/auth",sabcomponey);
+app.use("/auth",jobsroutes);
+
+
+
 
 const PORT=process.env.PORT||3000;
 
@@ -25,3 +30,6 @@ app.listen(PORT,()=>{
   Dbconnection();
   console.log(`this is the link http://localhost:${PORT}`);
 })
+
+
+//here i am going to weirin
