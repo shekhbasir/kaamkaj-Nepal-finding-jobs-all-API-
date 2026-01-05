@@ -9,3 +9,6 @@ const hamarapplication=new mongoose.Schema({
 },{timestamps:true});
 const ApplicationDatabase=mongoose.model("applicantDatastore",hamarapplication);
 module.exports=ApplicationDatabase;
+
+
+//now i am going to wrintign the code for thee apply jobs 

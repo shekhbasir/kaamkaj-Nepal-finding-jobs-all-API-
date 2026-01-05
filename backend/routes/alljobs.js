@@ -14,5 +14,3 @@ jobsroutes.get("/getjobByid/:id",isauth, getjobByid);
 jobsroutes.get("/getadminjobs",isauth,adminjobs);
 
 module.exports=jobsroutes;
-
-//for get all jobs mee jab kaam kareni san and then it will going to work and it will work 
