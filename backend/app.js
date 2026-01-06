@@ -8,6 +8,7 @@ const allauthroutes=require("./routes/allauth");
 const Dbconnection = require("./config/Db");
 const sabcomponey=require("./routes/allcomponey");
 const jobsroutes=require("./routes/alljobs");
+const allApplicant = require("./routes/allapplicant");
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
@@ -20,6 +21,7 @@ app.use(cors({
 app.use("/auth",allauthroutes)
 app.use("/auth",sabcomponey);
 app.use("/auth",jobsroutes);
+app.use("/auth",allApplicant);
 
 
 

@@ -24,7 +24,10 @@ const hamarjobs=new mongoose.Schema({
   Noofposition:{type:Number},
   componey:{type:mongoose.Schema.Types.ObjectId,ref:"ComponeyDatabase"},
   createdby:{type:mongoose.Schema.Types.ObjectId,ref:"UserDatabase"},
-  application:{type:mongoose.Schema.Types.ObjectId,ref:"ApplicationDatabase"}
+ application: [{
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "ApplicationDatabase"
+}]
 },{timestamps:true});
 
 
