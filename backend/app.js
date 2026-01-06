@@ -10,6 +10,8 @@ const sabcomponey=require("./routes/allcomponey");
 const jobsroutes=require("./routes/alljobs");
 const allApplicant = require("./routes/allapplicant");
 
+
+//from here i just know the middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieparser());
