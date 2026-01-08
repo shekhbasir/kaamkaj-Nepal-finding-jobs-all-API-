@@ -1,4 +1,3 @@
-//now here i am goinng to setup the code and working 
 const express=require("express");
 const cookieparser=require('cookie-parser');
 require('dotenv').config();
@@ -11,7 +10,6 @@ const jobsroutes=require("./routes/alljobs");
 const allApplicant = require("./routes/allapplicant");
 
 
-//from here i just know the middleware
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieparser());
@@ -36,4 +34,3 @@ app.listen(PORT,()=>{
 })
 
 
-//here i am going to weirin

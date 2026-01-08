@@ -2,7 +2,6 @@ const { application } = require("express");
 const ApplicationDatabase = require("../model/application");
 const JobsDatabase = require("../model/jabs");
 
-// ================= APPLY JOB =================
 const applyjobs = async (req, res) => {
   try {
     const userid = req.userId;
@@ -54,7 +53,6 @@ const applyjobs = async (req, res) => {
   }
 };
 
-// ================= GET APPLIED JOBS =================
 const getappliedjob = async (req, res) => {
   try {
     const userid = req.userId;
@@ -80,7 +78,6 @@ const getappliedjob = async (req, res) => {
   }
 };
 
-// ================= GET APPLICANTS =================
 const getapplicants = async (req, res) => {
   try {
     const jobsid = req.params.id;
@@ -106,7 +103,6 @@ const getapplicants = async (req, res) => {
   }
 };
 
-// ================= UPDATE STATUS =================
 const updatestatus = async (req, res) => {
   try {
     const { status } = req.body;
@@ -146,3 +142,6 @@ module.exports = {
   getapplicants,
   updatestatus
 };
+
+
+///now i am going to working with routes 
