@@ -2,9 +2,9 @@ import React from "react";
 import { Search } from "lucide-react";
 function Searchwala() {
   return (
-    <div className="w-full flex justify-center px-4 py-16">
+    <div className="w-full flex justify-center px-4 py-5">
       <div className="max-w-3xl flex flex-col items-center text-center gap-6">
-        <div className="px-6 py-2 bg-gray-100 rounded-full shadow-md">
+        <div className="px-6 py-1 bg-gray-100 rounded-full shadow-md">
           <span className="text-red-600 font-medium">
             No. 1 Jobs Hunt Site In Nepal
           </span>
