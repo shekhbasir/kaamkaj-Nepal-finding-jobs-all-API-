@@ -1,5 +1,39 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { LoaderCircle } from "lucide-react";
+
 function Login() {
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  const [role, setrole] = useState("");
+  const [error, seterror] = useState("");
+  const [loading, setloading] = useState(false);
+
+  const navigate = useNavigate();
+
+  const Handlesubmit = async (e) => {
+    e.preventDefault();
+    seterror("");
+
+    try {
+      setloading(true);
+      const res = await axios.post(
+        "http://localhost:8000/auth/login",
+        { email, password, role },
+        { withCredentials: true }
+      );
+
+      if (res.data.success) {
+        navigate("/");
+      }
+    } catch (error) {
+      seterror(error?.response?.data?.message || "Something went wrong");
+    } finally {
+      setloading(false);
+    }
+  };
+
   return (
     <>
       <div className="min-h-screen w-full flex justify-center items-center bg-gradient-to-br from-indigo-100 to-purple-200">
@@ -8,43 +42,69 @@ function Login() {
             Login
           </h2>
 
-          <form className="flex flex-col gap-4">
+          {error && (
+            <p className="text-red-600 text-sm text-center mb-3">{error}</p>
+          )}
+
+          <form className="flex flex-col gap-4" onSubmit={Handlesubmit}>
             <input
               type="email"
               placeholder="Email"
-              className="h-[40px] w-full bg-gray-100 pl-4 rounded-lg outline-none focus:ring-2 focus:ring-indigo-400"
+              value={email}
+              onChange={(e) => setemail(e.target.value)}
+              className="h-[40px] w-full bg-gray-100 pl-4 rounded-lg outline-none"
             />
 
             <input
               type="password"
               placeholder="Password"
-              className="h-[40px] w-full bg-gray-100 pl-4 rounded-lg outline-none focus:ring-2 focus:ring-indigo-400"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
+              className="h-[40px] w-full bg-gray-100 pl-4 rounded-lg outline-none"
             />
 
             <div className="flex justify-between mt-2 text-gray-700 text-sm">
               <label className="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="role" value="student" />
+                <input
+                  type="radio"
+                  name="role"
+                  value="student"
+                  onChange={(e) => setrole(e.target.value)}
+                />
                 Student
               </label>
 
               <label className="flex items-center gap-2 cursor-pointer">
-                <input type="radio" name="role" value="recruiter" />
+                <input
+                  type="radio"
+                  name="role"
+                  value="recruiter"
+                  onChange={(e) => setrole(e.target.value)}
+                />
                 Recruiter
               </label>
             </div>
 
             <button
               type="submit"
+              disabled={loading}
               className="mt-4 h-[40px] w-full bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-all"
             >
-              Login
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <LoaderCircle className="animate-spin" size={18} />
+                  Loading...
+                </span>
+              ) : (
+                "Login"
+              )}
             </button>
-            <h1>
-              Don't have an account{" "}
-              <span className="text-blue-800">
-                {" "}
-                ?<Link to="/login">Signup</Link>
-              </span>
+
+            <h1 className="text-sm text-center">
+              Don't have an account ?
+              <Link to="/signup" className="text-blue-800 ml-1">
+                Signup
+              </Link>
             </h1>
           </form>
         </div>
@@ -54,3 +114,5 @@ function Login() {
 }
 
 export default Login;
+
+//now here i am gooing to wrting the code for thee loading fetaue
