@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { LoaderCircle } from "lucide-react";
 
 function Signup() {
   const [fullname, setfullname] = useState("");
@@ -10,7 +11,6 @@ function Signup() {
   const [password, setpassword] = useState("");
   const [file, setfile] = useState(null);
   const [error, seterror] = useState("");
-
   const [loading, setloading] = useState(false);
   const navigate = useNavigate();
 
@@ -126,7 +126,14 @@ function Signup() {
               type="submit"
               className="mt-4 h-[40px] w-full bg-indigo-600 text-white rounded-lg font-semibold"
             >
-              {loading ? "loading.." : "Sign up"}
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <LoaderCircle className="animate-spin" size={18} />
+                  Loading...
+                </span>
+              ) : (
+                "Signup"
+              )}
             </button>
 
             <h1 className="text-sm text-center">

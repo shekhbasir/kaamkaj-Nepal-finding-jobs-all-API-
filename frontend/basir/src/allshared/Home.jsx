@@ -1,10 +1,15 @@
 import React from "react";
 import Nav from "./Nav";
+import Searchwala from "../sabchotchij/Searchwala";
+import Casoursab from "../sabchotchij/Casoursab";
 
 function Home() {
   return (
     <>
-      <div>this is the Home page s</div>
+      <div>
+        <Searchwala></Searchwala>
+        <Casoursab />
+      </div>
     </>
   );
 }
