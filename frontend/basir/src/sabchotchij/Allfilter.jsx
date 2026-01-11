@@ -51,7 +51,7 @@ function AllFilter() {
 
       {sarafilter.map((data, index) => (
         <div key={index} className="mb-5 ">
-          <h1 className="text-[15px] font-semibold mb-2 text-gray-700 ">
+          <h1 className="text-[15px] font-semibold mb-2 text-gray-700 shadow-md ">
             {data.filterTypes}
           </h1>
 

@@ -12,11 +12,6 @@ function Jobs() {
 
       <div className="flex gap-8">
         <Allfilter />
-        {/* //here i am going to puting the filter jobs wala feature  */}
-        {/* <div className="w-[260px] bg-white rounded-xl shadow-md p-4 h-fit sticky top-24">
-          <h2 className="font-semibold mb-2">Filters</h2>
-          <p className="text-sm text-gray-500">Coming soon…</p>
-        </div> */}
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 flex-1">
           {allarray.map((item, index) => (

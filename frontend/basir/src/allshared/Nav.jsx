@@ -9,7 +9,13 @@ import { UserRound, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function Nav() {
-  const kamvail = false;
+  const user = JSON.parse(localStorage.getItem("user"));
+  const kamvail = !!user;
+
+  const profileImage = user?.profile?.profilePhoto
+    ? `data:${user.profile.profilePhoto.contentType};base64,${user.profile.profilePhoto.data}`
+    : "";
+  // const kamvail = false;
 
   return (
     <>
@@ -54,16 +60,16 @@ function Nav() {
             <Popover>
               <PopoverTrigger>
                 <Avatar className="cursor-pointer ring-2 ring-indigo-500">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
+                  <AvatarImage src={profileImage} />
+                  <AvatarFallback>{user?.fullname?.charAt(0)}</AvatarFallback>
                 </Avatar>
               </PopoverTrigger>
 
               <PopoverContent className="w-[260px]">
                 <div className="flex gap-3 items-center">
                   <Avatar>
-                    <AvatarImage src="https://github.com/shadcn.png" />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarImage src={profileImage} />
+                    <AvatarFallback>{user?.fullname?.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div>
                     <h1 className="font-semibold">Mern Stack Developer</h1>

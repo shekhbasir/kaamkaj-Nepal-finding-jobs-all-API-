@@ -7,7 +7,7 @@ const UserDatabase=require("../model/user");
 const Hamarsignup = async (req, res) => {
   try {
     const { fullname, phoneNumber, role, email, password } = req.body;
-    const file = req.file; // profile photo
+    const file = req.file; 
 
     if (!fullname || !phoneNumber || !role || !email || !password) {
       return res.status(400).json({
@@ -56,11 +56,13 @@ const Hamarsignup = async (req, res) => {
     });
 
     console.log("FILE =>", req.file);
-    return res.status(200).json({
-      message: "you Signup Successfully ...",
-      success: true,
-    });
+    saradata.password = undefined;
 
+return res.status(200).json({
+  message: "you Signup Successfully ...",
+  success: true,
+  user: saradata,
+});
   } catch (error) {
     console.log("error  from the Signup page ", error);
     return res.status(500).json({
@@ -71,7 +73,6 @@ const Hamarsignup = async (req, res) => {
 };
 
 
-//lets go to the  task 
 
 const Hamarlogin = async (req, res) => {
   try {
@@ -92,7 +93,6 @@ const Hamarlogin = async (req, res) => {
       });
     }
 
-    // ✅ ADD ONLY (flow same)
     if (emailbaa.role !== role) {
       return res.status(400).json({
         message: "Role not matched",
@@ -121,13 +121,12 @@ const Hamarlogin = async (req, res) => {
       maxAge: 2 * 24 * 60 * 60 * 1000,
     });
 
-    // ✅ ADD ONLY (user untouched)
     emailbaa.password = undefined;
 
     return res.status(200).json({
       message: "Login Successfully ..!",
       success: true,
-      user: emailbaa, // SAME RESPONSE
+      user: emailbaa, 
     });
 
   } catch (error) {
@@ -152,7 +151,7 @@ const Hamarlogout=async(req,res)=>{
 const ProfileUpdating = async (req, res) => {
   try {
     const { fullname, email, phoneNumber, bio, skill } = req.body;
-    const file = req.file; // profile photo
+    const file = req.file; 
 
     let skillarray = [];
     if (skill) {
@@ -179,7 +178,6 @@ const ProfileUpdating = async (req, res) => {
     if (bio) datamilal.profile.bio = bio;
     if (skillarray.length) datamilal.profile.skill = skillarray;
 
-    // 🔥 FILE UPDATE (only add)
     if (file) {
       datamilal.profile.profilePhoto = {
         data: file.buffer.toString("base64"),
