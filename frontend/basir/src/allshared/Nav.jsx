@@ -13,15 +13,12 @@ function Nav() {
 
   return (
     <>
-      <div className="h-[64px] w-full bg-white shadow-md flex items-center justify-between px-8">
-        {/* Logo */}
+      <div className="h-[64px] w-full bg-white shadow-md flex items-center justify-between px-8 sticky top-0 z-50 bg-white shadow-md">
         <h1 className="text-2xl font-extrabold tracking-wide">
           Job <span className="text-red-600">khoj</span>
         </h1>
 
-        {/* Right Section */}
         <div className="flex items-center gap-6 text-[16px]">
-          {/* Nav Links */}
           <Link
             to="/"
             className="px-4 py-1 rounded-lg font-medium hover:bg-gray-100 transition"
@@ -30,14 +27,13 @@ function Nav() {
           </Link>
 
           <h1 className="px-4 py-1 rounded-lg font-medium hover:bg-gray-100 cursor-pointer transition">
-            Jobs
+            <Link to="/jobs">Jobs</Link>
           </h1>
 
           <h1 className="px-4 py-1 rounded-lg font-medium hover:bg-gray-100 cursor-pointer transition">
-            Browse
+            <Link to="/Browse"> Browse</Link>
           </h1>
 
-          {/* Auth Section */}
           {!kamvail ? (
             <div className="flex items-center gap-4">
               <Link
@@ -64,7 +60,6 @@ function Nav() {
               </PopoverTrigger>
 
               <PopoverContent className="w-[260px]">
-                {/* Profile */}
                 <div className="flex gap-3 items-center">
                   <Avatar>
                     <AvatarImage src="https://github.com/shadcn.png" />
@@ -80,7 +75,6 @@ function Nav() {
 
                 <hr className="my-3" />
 
-                {/* Actions */}
                 <div className="flex items-center gap-2">
                   <UserRound size={18} />
                   <Button variant="link" className="p-0">
