@@ -148,56 +148,93 @@ const Hamarlogout=async(req,res)=>{
   }
 }
 
+
 const ProfileUpdating = async (req, res) => {
   try {
-    const { fullname, email, phoneNumber, bio, skill } = req.body;
-    const file = req.file; 
-
-    let skillarray = [];
-    if (skill) {
-      skillarray = skill.split(",");
-    }
-
     const userId = req.userId;
-
     const datamilal = await UserDatabase.findById(userId);
+
     if (!datamilal) {
-      return res.status(400).json({
-        message: "Data not found",
-        success: false,
-      });
+      return res.status(400).json({ message: "User not found", success: false });
     }
 
-    if (!datamilal.profile) {
-      datamilal.profile = {};
-    }
+    if (!datamilal.profile) datamilal.profile = {};
 
+    // Extract fields from body
+    const {
+      fullname,
+      email,
+      phoneNumber,
+      bio,
+      skills,
+      experience,
+      education,
+      github,
+      linkedin,
+      website,
+      address,
+      city,
+      state,
+      country,
+      zipcode,
+      dateOfBirth,
+      gender,
+      maritalStatus,
+      languages,
+      hobbies,
+    } = req.body;
+
+    // Convert comma-separated fields to array
+    const skillarray = skills ? skills.split(",") : [];
+    const languageArray = languages ? languages.split(",") : [];
+    const hobbiesArray = hobbies ? hobbies.split(",") : [];
+
+    // Update basic fields
     if (fullname) datamilal.fullname = fullname;
     if (email) datamilal.email = email;
     if (phoneNumber) datamilal.phoneNumber = phoneNumber;
     if (bio) datamilal.profile.bio = bio;
     if (skillarray.length) datamilal.profile.skill = skillarray;
+    if (experience) datamilal.profile.experience = experience;
+    if (education) datamilal.profile.education = education;
+    if (github) datamilal.profile.github = github;
+    if (linkedin) datamilal.profile.linkedin = linkedin;
+    if (website) datamilal.profile.website = website;
+    if (address) datamilal.profile.address = address;
+    if (city) datamilal.profile.city = city;
+    if (state) datamilal.profile.state = state;
+    if (country) datamilal.profile.country = country;
+    if (zipcode) datamilal.profile.zipcode = zipcode;
+    if (dateOfBirth) datamilal.profile.dateOfBirth = dateOfBirth;
+    if (gender) datamilal.profile.gender = gender;
+    if (maritalStatus) datamilal.profile.maritalStatus = maritalStatus;
+    if (languageArray.length) datamilal.profile.languages = languageArray;
+    if (hobbiesArray.length) datamilal.profile.hobbies = hobbiesArray;
 
+    // Handle file upload (image or resume)
+    const file = req.file;
     if (file) {
-      datamilal.profile.profilePhoto = {
-        data: file.buffer.toString("base64"),
-        contentType: file.mimetype,
-      };
+      if (file.mimetype.startsWith("image")) {
+        datamilal.profile.profilePhoto = {
+          data: file.buffer.toString("base64"),
+          contentType: file.mimetype,
+        };
+      } else {
+        datamilal.profile.resume = file.buffer.toString("base64");
+        datamilal.profile.resumeOrgineName = file.originalname;
+      }
     }
 
     await datamilal.save();
 
     return res.status(200).json({
-      message: "Profile Updating Successfully ...!",
+      message: "Profile updated successfully",
       success: true,
+      user: datamilal,
     });
-
   } catch (error) {
-    console.log("error from the Profile Update ", error);
-    return res.status(500).json({
-      message: "Server Error",
-      success: false,
-    });
+    console.log(error);
+    res.status(500).json({ message: "Server error", success: false });
   }
 };
 

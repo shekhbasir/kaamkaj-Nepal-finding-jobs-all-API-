@@ -6,16 +6,34 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { UserRound, LogOut } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Nav() {
   const user = JSON.parse(localStorage.getItem("user"));
   const kamvail = !!user;
 
+  const hamanavigate = useNavigate();
+
   const profileImage = user?.profile?.profilePhoto
     ? `data:${user.profile.profilePhoto.contentType};base64,${user.profile.profilePhoto.data}`
     : "";
-  // const kamvail = false;
+
+  const Handlesubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(
+        "http://localhost:8000/auth/logout",
+        {},
+        { withCredentials: true }
+      );
+
+      localStorage.removeItem("user");
+      hamanavigate("/login");
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
 
   return (
     <>
@@ -83,15 +101,19 @@ function Nav() {
 
                 <div className="flex items-center gap-2">
                   <UserRound size={18} />
-                  <Button variant="link" className="p-0">
-                    view Profile
+                  <Button variant="link" className="p-0 cursor-pointer">
+                    <Link to="/profile"> view Profile</Link>
                   </Button>
                 </div>
 
                 <div className="flex items-center gap-2 mt-2 text-red-600">
                   <LogOut size={18} />
-                  <Button variant="link" className="p-0 text-red-600">
-                    LogOut
+                  <Button
+                    onClick={Handlesubmit}
+                    variant="link"
+                    className="p-0 text-red-600 cursor-pointer"
+                  >
+                    Logout
                   </Button>
                 </div>
               </PopoverContent>
@@ -104,3 +126,5 @@ function Nav() {
 }
 
 export default Nav;
+
+//here i am going to wrting the code for the logout the code
