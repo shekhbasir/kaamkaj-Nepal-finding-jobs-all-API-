@@ -16,7 +16,7 @@ function Jobscard() {
       <p className="text-xs text-gray-700 h-[32px] overflow-y-auto pr-1">
         Lorem ipsum dolor sit amet consectetur adipisicing Lorem ipsum dolor sit
       </p>
-
+      {/* kam simpley ham apna rakh saktani  */}
       <div className="flex gap-2 mt-1">
         <button className="text-[10px] px-2 py-[2px] bg-blue-300 text-black rounded-[5px]">
           12 Positions

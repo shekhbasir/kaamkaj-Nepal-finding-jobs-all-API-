@@ -25,6 +25,7 @@ import {
   CheckCircle,
   AlertTriangle,
 } from "lucide-react";
+import Appliedjobs from "./Appliedjobs";
 
 function Hamarprofile() {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
@@ -128,7 +129,7 @@ function Hamarprofile() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-gray-800 py-10 flex justify-center">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-900 dark:to-gray-800 py-10 flex justify-center flex-col items-center">
       <div className="w-[95%] lg:w-[75%] relative">
         <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
           <Button onClick={() => setEdit(true)}>
@@ -338,6 +339,37 @@ function Hamarprofile() {
           </div>
         </div>
       )}
+      <div className="w-full lg:w-[75%] mx-auto my-10">
+        <div
+          className="
+      relative
+      bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100
+      dark:from-gray-900 dark:via-gray-800 dark:to-gray-900
+      rounded-2xl
+      p-6
+      shadow-xl
+      transition
+      duration-500
+      hover:shadow-2xl
+    "
+        >
+          {/* Header */}
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+              Applied Jobs
+            </h1>
+
+            <span className="text-sm px-3 py-1 rounded-full bg-indigo-600 text-white">
+              Your Applications
+            </span>
+          </div>
+
+          {/* Content */}
+          <div className="bg-white dark:bg-gray-900 rounded-xl p-5 shadow-inner">
+            <Appliedjobs />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
