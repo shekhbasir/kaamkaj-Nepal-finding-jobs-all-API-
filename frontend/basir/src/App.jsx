@@ -6,6 +6,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Jobs from "./allshared/Jobs";
 import Browse from "./allshared/Browse";
 import Hamarprofile from "./sabchotchij/Hamarprofile";
+import JobDetails from "./sabchotchij/JobDetails";
 function App() {
   return (
     <>
@@ -18,6 +19,7 @@ function App() {
           <Route path="/jobs" element={<Jobs />}></Route>
           <Route path="/Browse" element={<Browse />}></Route>
           <Route path="/profile" element={<Hamarprofile />}></Route>
+          <Route path="/jobdetail/:id" element={<JobDetails />}></Route>
         </Routes>
       </BrowserRouter>
     </>

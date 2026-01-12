@@ -1,8 +1,11 @@
 import React from "react";
 import { Bookmark, MapPinned } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useNavigate } from "react-router-dom";
 
 function Job() {
+  const hamarnavigte = useNavigate();
+  const jobId = "thisisthesimplejobsid";
   return (
     <div
       className="
@@ -60,6 +63,7 @@ function Job() {
           transition
           cursor-pointer
         "
+          onClick={() => hamarnavigte(`/jobdetail/${jobId}`)}
         >
           Details
         </button>
@@ -80,3 +84,5 @@ function Job() {
 }
 
 export default Job;
+
+//from here i am going to connecting

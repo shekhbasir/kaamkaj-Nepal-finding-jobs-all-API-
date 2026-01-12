@@ -33,3 +33,5 @@ function Jobscard() {
 }
 
 export default Jobscard;
+
+///now i am going to routes and the coonnecting in which jaha details of specific jobs k ham nikal sakhi with very simple  and the very rearest way
