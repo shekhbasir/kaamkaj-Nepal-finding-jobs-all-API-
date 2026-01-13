@@ -61,8 +61,6 @@ const postjobs = async (req, res) => {
 };
 
 
-
-
 const getalljobs = async (req, res) => {
   try {
     const keyword = req.query.keyword || "";
@@ -72,11 +70,14 @@ const getalljobs = async (req, res) => {
         { title: { $regex: keyword, $options: "i" } },
         { description: { $regex: keyword, $options: "i" } },
         { jobsTypes: { $regex: keyword, $options: "i" } },
-        { location: { $regex: keyword, $options: "i" } },
+        { location: { $regex: keyword, $options: "i" } }
       ]
     };
 
-    const milaljobs = await JobsDatabase.find(query).sort({createdAt:-1});
+    const milaljobs = await JobsDatabase
+      .find(query)
+      .populate("componey", "name")   // ✅ FIX HERE
+      .sort({ createdAt: -1 });
 
     if (milaljobs.length === 0) {
       return res.status(404).json({
@@ -92,13 +93,14 @@ const getalljobs = async (req, res) => {
     });
 
   } catch (error) {
-    console.log("error from the geting all jobs ..!", error);
+    console.log("error from the getting all jobs ..!", error);
     return res.status(500).json({
       message: "server error",
       success: false
     });
   }
 };
+
 
 
 

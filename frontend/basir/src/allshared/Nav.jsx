@@ -25,6 +25,7 @@ function Nav() {
       await axios.post(
         "http://localhost:8000/auth/logout",
         {},
+
         { withCredentials: true }
       );
 
@@ -90,9 +91,12 @@ function Nav() {
                     <AvatarFallback>{user?.fullname?.charAt(0)}</AvatarFallback>
                   </Avatar>
                   <div>
-                    <h1 className="font-semibold">Mern Stack Developer</h1>
+                    <h1 className="font-semibold">
+                      {user?.fullname || "User"}
+                    </h1>
+
                     <p className="text-sm text-gray-400">
-                      Lorem ipsum dolor sit amet.
+                      {user?.profile?.bio || "No description added"}
                     </p>
                   </div>
                 </div>

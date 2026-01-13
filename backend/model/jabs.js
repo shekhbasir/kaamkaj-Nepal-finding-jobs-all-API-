@@ -22,7 +22,7 @@ const hamarjobs=new mongoose.Schema({
     type:String,
   },
   Noofposition:{type:Number},
-  componey:{type:mongoose.Schema.Types.ObjectId,ref:"ComponeyDatabase"},
+  componey: { type: mongoose.Schema.Types.ObjectId, ref: "Componeydatastore" },
   createdby:{type:mongoose.Schema.Types.ObjectId,ref:"UserDatabase"},
  application: [{
   type: mongoose.Schema.Types.ObjectId,
